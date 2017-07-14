@@ -105,7 +105,7 @@ public class studentTest
         int flag = 0;
         for (int i = 0; i < 2; i++)
         {
-            if(date[i].getName()==find[0] && date[i].getEmail()== find[1] && date[i].getAddress() == find[2])
+            if(date[i].getName().equals(find[0]) && date[i].getEmail().equals(find[1]) && date[i].getAddress().equals(find[2]))
             {
                 System.out.println("已找到");
                 flag = 1;
