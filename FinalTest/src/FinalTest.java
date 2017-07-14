@@ -66,6 +66,16 @@ public class FinalTest
         String st3 = st1 + st2;//宏替换 编译时确定
         System.out.println(st3 == st4);//true 同时引用常量池的"1122"
 
+
+
+        Street stt = new Street("222");
+        Location lo = new Location(stt);
+        System.out.println(lo.getStreet().getId());
+        stt.setId("111");//改变了Location对象成员变量引用对象的值 不是可变量了 更改构造器和getter方法后更改会出错
+        System.out.println(lo.getStreet().getId());//没有变lo
+
+
+
     }
 }
 
@@ -104,3 +114,103 @@ class Zi extends Fu
 final class f{}//final修饰的类不可以有子类
 //class z extends f{}//错误
 
+
+
+/*
+不可变类 创建实例后 实例变量不可变
+1.private final修饰成员变量
+2.构造器通过传参初始成员变量
+3.只提供getter 不提供setter
+4.有必要重写Object类的hashCode()和equals()
+ */
+class Address
+{
+    private final String detail;
+    private final String postCode;
+
+    /*构造器初始成员变量*/
+    public Address()
+    {
+        this.detail = "";
+        this.postCode = "";
+    }
+    public Address(String detail , String postCode)
+    {
+        this.detail = detail;
+        this.postCode = postCode;
+    }
+
+    /*getter方法*/
+    public String getDetail()
+    {
+        return this.detail;
+    }
+    public String getPostCode()
+    {
+        return this.postCode;
+    }
+
+    /*重写equals()*/
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+        {
+            return true;
+        }
+        if( obj != null && obj.getClass() == Address.class)//当obj时Address的对象
+        {
+            Address ad = (Address)obj;//父类转换为子类 强制转换
+            if(ad.getDetail().equals(this.getDetail()) && ad.getPostCode().equals(this.getPostCode()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*重写hashCode()*/
+    public int hashCode()
+    {
+        return detail.hashCode() + postCode.hashCode() * 31;
+    }
+}
+
+
+
+
+class Street
+{
+    private String id;
+    public Street()
+    {
+        id = "";
+    }
+    public Street(String id)
+    {
+        this.id = id;
+    }
+
+    public String getId()
+    {
+        return this.id;
+    }
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+}
+class Location
+{
+    private final Street st;
+    public Location(Street st)
+    {
+        //this.st = st;
+        this.st = new Street(st.getId());//用创建的新实例来赋值
+    }
+    public  Street getStreet()
+    {
+        //return this.st;
+        return new Street(st.getId());//返回重新创建的实例的成员
+    }
+
+}
