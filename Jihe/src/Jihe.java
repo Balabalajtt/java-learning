@@ -1,7 +1,10 @@
-import sun.rmi.runtime.Log;
+import com.sun.org.apache.xalan.internal.utils.XMLSecurityPropertyManager;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
@@ -10,8 +13,7 @@ import java.util.stream.IntStream;
  */
 public class Jihe {
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws FileNotFoundException {
         Collection co = new ArrayList();
         co.add("11");
         co.add("22");
@@ -49,8 +51,52 @@ public class Jihe {
 //        newIs.forEach(System.out::println);//末端方法
         DoubleStream ds = intStream.mapToDouble(ele->ele*1.1);
         ds.forEach(System.out::println);
-        
+
+
+        List<String> list = Arrays.asList("55","6","777","52");
+        System.out.println(list.getClass());//Arrays的内部类
+
+        PriorityQueue<Number> priorityQueue = new PriorityQueue<>();
+        priorityQueue.offer(3);
+        priorityQueue.offer(9);
+        priorityQueue.offer(8);
+        priorityQueue.offer(2);
+        priorityQueue.offer(1);
+        System.out.println(priorityQueue);
+        System.out.println(priorityQueue.poll());
+        System.out.println(priorityQueue.poll());
+        System.out.println(priorityQueue.poll());
+        System.out.println(priorityQueue.poll());
+        System.out.println(priorityQueue.poll());
+        System.out.println(priorityQueue.poll());
+
+        Map map = new LinkedHashMap();
+        map.put(1,"sss");
+        System.out.println();
+
+        Properties properties = new Properties();
+        properties.put("name","JiangTingTing");
+        properties.put("password","123456");
+        try {
+            properties.store(new FileOutputStream("test.ini"),"comment line");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Properties properties1 = new Properties();
+        try {
+            properties1.load(new FileInputStream("test.ini"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(properties1);
+
+        Collection arrayList = Collections.synchronizedCollection(new ArrayList<>());//包装成线程同步集合
+        List ulist = Collections.unmodifiableList(list);//返回list的不可变集合版本
+        Set set = Collections.singleton("sss");//返回一项元素的不可变集合
 
     }
+
+
 
 }
