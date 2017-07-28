@@ -1,3 +1,6 @@
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -8,11 +11,11 @@ public class ThreadTest extends Thread {
     private static int i;
     @Override
     public void run() {
-        for(; i<1000 ;i++) {
+        for (; i < 1000; i++) {
             System.out.println("这是" + this.getName() + "线程" + "i" + i);
         }
     }
-    public static void main(String arg[]) {
+    public static void main(String arg[]) throws Exception {
         for(i = 0; i<1000 ;i++) {
             System.out.println("这是" + Thread.currentThread().getName() + "线程" + "i" + i);
             if(i == 1) {
@@ -27,8 +30,31 @@ public class ThreadTest extends Thread {
 
         }
 
-        FutureTask<>
+        FutureTask<Integer> task = new FutureTask<Integer>((Callable<Integer>)()->{
+            int i = 0;
+            for(i = 0; i < 100; i++) {
+                System.out.println(Thread.currentThread().getName() + i + "FutureTask");
+            }
+            return i;
+        });
+        for(int i = 0; i < 100 ; i++) {
+            System.out.println(Thread.currentThread().getName() + "循环变量i的值" + i);
+            if(i==10) {
+                new Thread(task, "有返回值的线程").start();
+            }
 
+
+
+        }
+
+        joinTest.joint();
+
+
+        BlockingQueue<String> bq = new ArrayBlockingQueue<String>(5);
+        new BlockingQueueTest(bq).start();
+        new BlockingQueueTest(bq).start();
+        new BlockingQueueTest(bq).start();
+        new Customer(bq).start();
     }
 }
 class RunableThreadTest implements Runnable {
@@ -36,16 +62,9 @@ class RunableThreadTest implements Runnable {
     private int i;
     @Override
     public void run() {
-        for(; i<1000; i++) {
+        for(; i<100; i++) {
             System.out.println(Thread.currentThread().getName() + i);
         }
     }
 }
 
-class CallableTest implements Callable {
-
-    @Override
-    public Object call() throws Exception {
-        return null;
-    }
-}
