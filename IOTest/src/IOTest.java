@@ -1,7 +1,6 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.io.*;
 
 /**
  * Created by 江婷婷 on 2017/7/31.
@@ -11,6 +10,8 @@ public class IOTest {
     public static void main (String[] args) throws IOException {
         Test1();
         Test2();
+        Test3();
+        Test4();
     }
 
     static void Test1() throws IOException {
@@ -36,6 +37,60 @@ public class IOTest {
         }
 
         //fileInputStream.close();//可以手动关闭资源
+    }
+
+    static void Test3() {
+        try (
+                FileOutputStream fileOutputStream = new FileOutputStream("test.txt");
+                PrintStream printStream = new PrintStream(fileOutputStream))
+        {
+            printStream.println("处理流");
+            printStream.println(new IOTest());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void Test4() {
+        try (
+                InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                PushbackReader pushbackInputStream = new PushbackReader(new FileReader("test.txt"),64))
+        {
+
+            char[] buf = new char[32];
+            String lastContent = "";
+            int hasRead;
+            while ((hasRead = pushbackInputStream.read(buf)) > 0) {
+                String string = new String(buf, 0, hasRead);//把读取内容转换成字符串
+                int targetIndex = 0;
+                if ((targetIndex = (lastContent + string).indexOf("IOTest")) > 0) {
+                    pushbackInputStream.unread((lastContent + string).toCharArray());
+                    if (targetIndex > 32) {
+                        buf = new char[targetIndex];
+                    }
+                    pushbackInputStream.read(buf, 0, targetIndex);
+                    System.out.println(new String(buf, 0, targetIndex));
+                    System.exit(0);
+                } else {
+                    System.out.println(lastContent);
+                    lastContent = string;
+                }
+            }
+
+
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
+                if(line.equals("exit")) {
+                    System.exit(1);
+                }
+                System.out.println("输出内容：" + line);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
