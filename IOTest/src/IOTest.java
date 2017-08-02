@@ -1,4 +1,3 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.*;
 
@@ -7,7 +6,7 @@ import java.io.*;
  */
 public class IOTest {
 
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         Test1();
         Test2();
         Test3();
@@ -20,7 +19,7 @@ public class IOTest {
         System.out.println(file.getAbsoluteFile());
         System.out.println(file.getAbsoluteFile().getParent());//转换成直接路径
         file.createNewFile();//创建真的文件
-    //    file.deleteOnExit();//JVM退出后删除文件
+        //    file.deleteOnExit();//JVM退出后删除文件
     }
 
     static void Test2() {
@@ -28,11 +27,10 @@ public class IOTest {
         {
             byte[] bbuf = new byte[1024];
             int hasRead = 0;
-            while ((hasRead = fileInputStream.read(bbuf))>0) {
-                System.out.println(new String(bbuf,0,hasRead));//读中文会乱码
+            while ((hasRead = fileInputStream.read(bbuf)) > 0) {
+                System.out.println(new String(bbuf, 0, hasRead));//读中文会乱码
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -42,12 +40,10 @@ public class IOTest {
     static void Test3() {
         try (
                 FileOutputStream fileOutputStream = new FileOutputStream("test.txt");
-                PrintStream printStream = new PrintStream(fileOutputStream))
-        {
+                PrintStream printStream = new PrintStream(fileOutputStream)) {
             printStream.println("处理流");
             printStream.println(new IOTest());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -56,8 +52,7 @@ public class IOTest {
         try (
                 InputStreamReader inputStreamReader = new InputStreamReader(System.in);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                PushbackReader pushbackInputStream = new PushbackReader(new FileReader("test.txt"),64))
-        {
+                PushbackReader pushbackInputStream = new PushbackReader(new FileReader("test.txt"), 64)) {
 
             char[] buf = new char[32];
             String lastContent = "";
@@ -70,7 +65,7 @@ public class IOTest {
                     if (targetIndex > 32) {
                         buf = new char[targetIndex];
                     }
-                    pushbackInputStream.read(buf, 0, targetIndex);
+                    pushbackInputStream.read(buf, 0, targetIndex);//读取目标字符串之前内容
                     System.out.println(new String(buf, 0, targetIndex));
                     System.exit(0);
                 } else {
@@ -81,16 +76,14 @@ public class IOTest {
 
 
             String line;
-            while((line = bufferedReader.readLine()) != null) {
-                if(line.equals("exit")) {
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.equals("exit")) {
                     System.exit(1);
                 }
                 System.out.println("输出内容：" + line);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
