@@ -8,11 +8,11 @@ import java.net.URL;
  * Created by 江婷婷 on 2017/8/3.
  */
 public class DownUtil {
-    private String path;//下载资源路径
-    private String targetFile;//保存路径
-    private int threadNum;//线程个数
-    private DownThread[] threads;//线程对象
-    private int fileSize;//文件总大小
+    private String path;            //下载资源路径
+    private String targetFile;      //保存路径
+    private int threadNum;          //线程个数
+    private DownThread[] threads;   //线程对象
+    private int fileSize;           //文件总大小
 
     //多线程下载类构造器
     public DownUtil(String path, String targetFile, int threadNum) {
