@@ -53,7 +53,7 @@ public class ZhengFang {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cookie = response.getFirstHeader("Set-Cookie").getValue();
+        cookie = response.getFirstHeader("Set-Cookie").getValue().substring(0, response.getFirstHeader("Set-Cookie").getValue().indexOf(";") + 1);
         System.out.println("获取cookie的sessionId" + cookie);
         return true;
     }
@@ -81,7 +81,7 @@ public class ZhengFang {
         httpGet.setHeader("Update-Insecure-Requests", "1");
 //        httpGet.setHeader("Cache-Control", "max-age=0");
 //        httpGet.setHeader("Referer", "http://222.24.62.120/");
-
+        System.out.println(cookie);
         try {
             response = httpClient.execute(httpGet);
         } catch (IOException e) {
@@ -156,10 +156,11 @@ public class ZhengFang {
             e.printStackTrace();
         }
 
+        System.out.println(cookie);
+
 //        System.out.println("************************");
 //        System.out.println(responseBody);
         downloadPicture(responseBody);
-
         return true;
     }
 
@@ -189,7 +190,7 @@ public class ZhengFang {
         httpPost.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         httpPost.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
         httpPost.setHeader("Accept-Encoding", "gzip, deflate");
-        httpPost.setHeader("Referer", "http://222.24.62.120");
+        httpPost.setHeader("Referer", "http://222.24.62.120/");
 //        httpPost.setHeader("Referer", "http://222.24.62.120/xs_main.aspx?xh=04163216");
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 //        httpPost.setHeader("Content-Length", "195");
@@ -209,7 +210,7 @@ public class ZhengFang {
         nvps.add(new BasicNameValuePair("hidPdrs", ""));
         nvps.add(new BasicNameValuePair("hidsc", ""));
 
-
+        System.out.println(cookie);
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
