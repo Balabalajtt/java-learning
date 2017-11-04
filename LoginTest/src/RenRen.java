@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RenRen {
-    private static String userName = "不告诉你";
-    private static String password = "也不告诉你";
+    private static String userName = "18792898826";
+    private static String password = "waxi1998JTT.";
     private static String redirectURL = "http://blog.renren.com/blog/304317577/449470467";
     private static String renRenLoginURL = "http://www.renren.com/PLogin.do";
 
@@ -45,12 +45,9 @@ public class RenRen {
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
             response = httpClient.execute(httpPost);//执行获得response
-            System.out.println(response);
+            System.out.println("uuuuuuuuuuuuuu" + response);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-            return false;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -66,7 +63,9 @@ public class RenRen {
      * @return 重定向url
      */
     private String getRedirectLocation() {
+        System.out.println(response);
         Header header = response.getFirstHeader("Location");
+        System.out.println(header);
         System.out.println(header);
         if (header == null) {
             return null;
