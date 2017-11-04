@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 public class ZhengFang {
     private static String idCode = "04163216";
-    private static String password = "waxi1998JTT.";
+    private static String password = ".........";
     private static String loginUrl = "http://222.24.62.120/default2.aspx";
     private static String checkCode = "";
     private String viewState;
