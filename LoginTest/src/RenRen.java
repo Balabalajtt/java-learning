@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RenRen {
-    private static String userName = "18792898826";
-    private static String password = "waxi1998JTT.";
+    private static String userName = "********";
+    private static String password = "********";
     private static String redirectURL = "http://blog.renren.com/blog/304317577/449470467";
     private static String renRenLoginURL = "http://www.renren.com/PLogin.do";
 
