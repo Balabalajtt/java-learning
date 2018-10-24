@@ -1,0 +1,135 @@
+#headBar{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 13%;
+	background:#2477b8;	
+	border-bottom: #10619a solid 5px;
+	z-index: 100;
+}
+.uname{
+	height: 100%;
+	width: 10%;
+	padding-top: 1%;
+	text-align: center;
+	float: left;
+	color: white;
+}
+.qt{
+	height: 100%;
+	width: 10%;
+	margin-top: 1%;
+	text-align: center;
+	float: right;
+}
+.sub{
+	border:none;
+	padding: 2px 5px 4px 5px;
+	border-radius: 4px;
+	cursor: pointer;
+	background: #2477b8;
+	color: white;
+}
+.sub:hover{
+	background:#104d77;
+}
+#navBar{
+	position: fixed;
+	background:#f3f8fc;
+	opacity: 0.8;
+	left: 0;
+	top: 13%;
+	width: 13%;
+	height: 80%;
+	border-top:#10619a solid 5px;
+	border-right: #c3ced5 solid 2px;
+}
+#content{
+	position: fixed;
+	left: 13%;
+	top: 13%;
+	width: 62%;
+	height: 80%;
+	border-top: #10619a solid 5px;
+	border-left: #c3ced5 solid 2px;
+	border-bottom: #c3ced5 solid 2px;
+}
+#booter{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 7%;
+	background:#f3f8fc;
+	border-top:#c3ced5 solid 2px;
+	z-index: 2;
+}
+#rightBar{
+	position: fixed;
+	right: 0;
+	top: 13%;
+	height: 80%;
+	width: 25%;
+	background:#f3f8fc;
+	border-top: #10619a solid 5px;
+	z-index: 1;
+
+}
+.menu{
+	width: 86%;
+	height: 30%;
+	position: relative;
+	left: 5%;
+	top: 3%;
+	border-top:#10619a solid 5px;
+}
+.menu ul{
+	list-style: none;
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+}
+.menu ul li{
+	width: 100%;
+	height: 25%;
+	text-align: center;
+	font-size: 18px;
+	line-height: 36px;
+	background:#d7e6f1;
+	cursor: pointer;
+	border-bottom:#10619a solid 1px;
+}
+.menu ul li:hover {
+	background: #68a2cf;
+}
+.instruction{
+	width: 88%;
+	height: 50%;
+	position: relative;
+	bottom: -8%;
+	left: 5%;
+	background: white;
+	border-radius: 20px;
+	padding-top: 20px;
+	text-align: center;
+}
+.shengming{
+	width: 100%;
+	height: 60%;
+	position: absolute;
+	top: 10px;
+	text-align: center;
+}
+.tips{
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	background: rgba(0, 146, 255, 0.3);
+	position: relative;
+	left: 25%;
+	top: 25%;
+	padding: 20px;
+	border-radius: 20px;
+}

@@ -1,0 +1,28 @@
+.sub{
+	width: 90%;
+	height: 35px;
+	margin:0;
+	position: relative;
+	left: 5%;
+	background: #fff;
+	border: none;
+	border-top: 1.5px solid #b1c7d7;
+	cursor: pointer;
+	
+}
+.sub:hover{
+	background: #f2f2f2;
+}
+
+hr{
+	width: 90%;
+	color: #b1c7d7;
+	margin-top:0;
+}
+p{
+	width: 90%;
+	position: relative;
+	left: 5%;
+	font-size: 12px;
+	color: #0f6099;
+}

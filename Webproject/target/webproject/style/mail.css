@@ -1,0 +1,10 @@
+body{
+	background: #f5f7fa;
+}
+.fujian{
+	border: none;
+	background:  #f5f7fa;
+	font-size: 13px;
+	color:  #0f6099;
+	cursor: pointer;
+}

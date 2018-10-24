@@ -1,0 +1,29 @@
+body{
+	background: #f5f7fa;
+}
+.main{
+	position: absolute;
+	width: 70%;
+	height:70%;
+	left: 15%;
+	top: 15%;
+	text-align: center;
+}
+.msg{
+	width: 100%;
+	height: 30%;
+	padding-top: 10%;
+	font-size: 40px;
+}
+.sub{
+	background: #d9d9d9;
+	border:1.5px solid #999999;
+	margin-top: 5%;
+	width: 100px;
+	height: 40px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.sub:hover{
+	border:2px solid #333;
+}
